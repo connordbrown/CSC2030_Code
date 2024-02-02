@@ -1,5 +1,5 @@
 // Connor Brown
-// CSC2030
+// CSC 2030
 // 1/26/2024
 // Chapter 2 Program 1
 
