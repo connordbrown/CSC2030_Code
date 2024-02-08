@@ -22,9 +22,10 @@ int main(void) {
             puts("");
         } // end if
         
-        ctr += 1; // increment ctr by 1
+        ++ctr; // increment ctr by 1
     } // end while
 
     puts(""); // spacing
 
+    return 0;
 } // end function main
