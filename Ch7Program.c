@@ -53,9 +53,9 @@ void printArray(int *arr) {
     printf("%d%s", arr[SIZE - 1], "]\n");
 }
 
-// takes pointer to int array as argument and reverses array
+// takes pointer to int array as argument and swaps array elements
 void reverseArray(int *arr) {
-    for (size_t i = 0; i < SIZE / 2; ++ i) {
+    for (size_t i = 0; i < SIZE / 2; ++i) {
         int temp = arr[i];
         arr[i] = arr[SIZE - 1 - i];
         arr[SIZE - 1 - i] = temp;
