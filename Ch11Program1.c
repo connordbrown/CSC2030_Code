@@ -16,7 +16,6 @@ struct person {
 // begin program execution
 int main(void) {
 
-
   // ########## a) ###########
   
   // create file pointer and struct instance
@@ -38,8 +37,7 @@ int main(void) {
   // close file
   fclose(fp);
   puts("File initialized with 100 empty records.");
-
-
+  
   // ########## b) ###########
 
   // open file for editing
@@ -51,30 +49,29 @@ int main(void) {
 
   // add 10 records
   for (int i = 0; i < 1; ++i) {
-    struct person nextPerson;
+    struct person newPerson;
 
     puts(""); // spacing
     
     // get last name
     printf("%s", "Enter last name: ");
-    scanf("%14s", nextPerson.lastName);
+    scanf("%14s", newPerson.lastName);
     // get first name
     printf("%s", "Enter first name: ");
-    scanf("%14s", nextPerson.firstName);
+    scanf("%14s", newPerson.firstName);
     // get age
     printf("%s", "Enter age: ");
-    scanf( "%3s", nextPerson.age);
+    scanf( "%3s", newPerson.age);
 
     puts(""); // spacing
     
     // write record to file
-    fwrite(&nextPerson, sizeof(struct person), 1, fp);
+    fwrite(&newPerson, sizeof(struct person), 1, fp);
   }
 
   // close file
   fclose(fp);
   puts("10 records written to the file");
-
 
   // ########## c) ###########
 
@@ -132,11 +129,10 @@ int main(void) {
   // close file
   fclose(fp);
 
-
- // ########## d) ###########
+  // ########## d) ###########
 
   // open file for editing
-  fp = fopen("nameage.dat", "rb");
+  fp = fopen("nameage.dat", "rb+");
   if (fp == NULL) {
     puts("Error opening file.");
   }
@@ -163,8 +159,12 @@ int main(void) {
     printf("Age: %s\n", differentPerson.age);
     puts(""); // spacing
 
-    // delete record by reinitializing it with blank newPerson record
-    fwrite(&newPerson, sizeof(struct person), 1, fp);
+    // move file pointer back to correct record
+    fseek(fp, (recordNum - 1) * sizeof(struct person), SEEK_SET);
+    
+    // delete record 
+    struct person blankPerson = {"unassigned", "unassigned", "0"};
+    fwrite(&blankPerson, sizeof(struct person), 1, fp);
     printf("Record %d deleted\n", recordNum);
   }
   
