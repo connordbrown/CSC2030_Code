@@ -50,25 +50,25 @@ int main(void) {
   }
 
   // add 10 records
-  for (int i = 0; i < 10; ++i) {
-    struct person newPerson;
+  for (int i = 0; i < 1; ++i) {
+    struct person nextPerson;
 
     puts(""); // spacing
     
     // get last name
     printf("%s", "Enter last name: ");
-    scanf("%14s", newPerson.lastName);
+    scanf("%14s", nextPerson.lastName);
     // get first name
     printf("%s", "Enter first name: ");
-    scanf("%14s", newPerson.firstName);
+    scanf("%14s", nextPerson.firstName);
     // get age
     printf("%s", "Enter age: ");
-    scanf( "%3s", newPerson.age);
+    scanf( "%3s", nextPerson.age);
 
     puts(""); // spacing
     
     // write record to file
-    fwrite(&newPerson, sizeof(struct person), 1, fp);
+    fwrite(&nextPerson, sizeof(struct person), 1, fp);
   }
 
   // close file
@@ -163,7 +163,7 @@ int main(void) {
     printf("Age: %s\n", differentPerson.age);
     puts(""); // spacing
 
-    // delete record by reinitializing it with newPerson
+    // delete record by reinitializing it with blank newPerson record
     fwrite(&newPerson, sizeof(struct person), 1, fp);
     printf("Record %d deleted\n", recordNum);
   }
