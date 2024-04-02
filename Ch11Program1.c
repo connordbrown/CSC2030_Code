@@ -163,8 +163,7 @@ int main(void) {
     fseek(fp, (recordNum - 1) * sizeof(struct person), SEEK_SET);
     
     // delete record 
-    struct person blankPerson = {"unassigned", "unassigned", "0"};
-    fwrite(&blankPerson, sizeof(struct person), 1, fp);
+    fwrite(&newPerson, sizeof(struct person), 1, fp);
     printf("Record %d deleted\n", recordNum);
   }
   
