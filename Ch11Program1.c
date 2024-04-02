@@ -48,7 +48,7 @@ int main(void) {
   }
 
   // add 10 records
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 10; ++i) {
     struct person newPerson;
 
     puts(""); // spacing
