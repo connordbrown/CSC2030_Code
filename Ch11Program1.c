@@ -132,5 +132,45 @@ int main(void) {
   // close file
   fclose(fp);
 
+
+ // ########## d) ###########
+
+  // open file for editing
+  fp = fopen("nameage.dat", "rb");
+  if (fp == NULL) {
+    puts("Error opening file.");
+  }
+
+  // get record number
+  printf("%s", "Enter record number to delete (1-100): ");
+  scanf("%d", &recordNum);
+
+  // move file pointer to record
+  fseek(fp, (recordNum - 1) * sizeof(struct person), SEEK_SET);
+  // read record
+  fread(&differentPerson, sizeof(struct person), 1, fp);
+  
+  // use strcmp to check if record is unassigned
+  // if record is empty, print error message
+  if (strcmp(differentPerson.lastName, "unassigned") == 0 && strcmp(differentPerson.firstName, "unassigned") == 0 && strcmp(differentPerson.age, "0") == 0) {
+    printf("No info in record %d\n", recordNum);
+  }
+  else {
+    puts(""); // spacing
+    puts("Current information: ");
+    printf("Last Name: %s\n", differentPerson.lastName);
+    printf("First Name: %s\n", differentPerson.firstName);
+    printf("Age: %s\n", differentPerson.age);
+    puts(""); // spacing
+
+    // delete record by reinitializing it with newPerson
+    fwrite(&newPerson, sizeof(struct person), 1, fp);
+    printf("Record %d deleted\n", recordNum);
+  }
+  
+  // close file
+  fclose(fp);
+
+  
   return 0;
-}
+} // end function main
