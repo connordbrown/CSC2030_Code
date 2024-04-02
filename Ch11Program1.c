@@ -16,6 +16,7 @@ struct person {
 // begin program execution
 int main(void) {
 
+
   // ########## a) ###########
   
   // create file pointer and struct instance
@@ -37,7 +38,7 @@ int main(void) {
   // close file
   fclose(fp);
   puts("File initialized with 100 empty records.");
-  
+
 
   // ########## b) ###########
 
@@ -73,6 +74,63 @@ int main(void) {
   // close file
   fclose(fp);
   puts("10 records written to the file");
+
+
+  // ########## c) ###########
+
+  // Update a record; if there’s no information in the record, tell the user "No info".
+  int recordNum;
+  struct person differentPerson;
+  
+  // open file for editing
+  fp = fopen("nameage.dat", "rb+");
+  if (fp == NULL) {
+    puts("Error opening file.");
+    return 1;
+  }
+  
+  // get record number
+  printf("%s", "Enter record number to update (1-100): ");
+  scanf("%d", &recordNum);
+
+  // move file pointer to record
+  fseek(fp, (recordNum - 1) * sizeof(struct person), SEEK_SET);
+  // read record
+  fread(&differentPerson, sizeof(struct person), 1, fp);
+
+
+  // use strcmp to check if record is unassigned
+  // if record is empty, print error message
+  if (strcmp(differentPerson.lastName, "unassigned") == 0 && strcmp(differentPerson.firstName, "unassigned") == 0 && strcmp(differentPerson.age, "0") == 0) {
+    printf("No info in record %d\n", recordNum);
+  }
+  else {
+    puts(""); //spacing
+    puts("Current information: ");
+    printf("Last Name: %s\n", differentPerson.lastName);
+    printf("First Name: %s\n", differentPerson.firstName);
+    printf("Age: %s\n", differentPerson.age);
+    
+    // get new information
+    puts(""); // spacing
+    printf("%s", "Enter new last name: ");
+    scanf("%14s", differentPerson.lastName);
+    printf("%s", "Enter new first name: ");
+    scanf("%14s", differentPerson.firstName);
+    printf("%s", "Enter new age: ");
+    scanf( "%3s", differentPerson.age);
+    puts(""); // spacing
+  
+    // move file pointer to record
+    fseek(fp, (recordNum - 1) * sizeof(struct person), SEEK_SET);
+    
+    // write record
+    fwrite(&differentPerson, sizeof(struct person), 1, fp);
+    printf("Record %d updated\n", recordNum);
+  }
+  
+  // close file
+  fclose(fp);
 
   return 0;
 }
