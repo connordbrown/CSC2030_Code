@@ -18,6 +18,7 @@ Node* reverse(Node* head);
 void printList(Node* head);
 
 
+// begin program execution
 int main(void) {
 
   // create linked list
@@ -44,7 +45,7 @@ int main(void) {
   puts(""); // spacing
   
     return 0;
-}
+} // end function main
 
 
 // insertion function for adding new nodes to linked list
