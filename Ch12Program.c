@@ -35,3 +35,20 @@ void insert(Node** head, char data) {
     current->next = newNode;
   }
 }
+
+// reverse copy function for creating a reversed copy of linked list
+Node* reverse(Node* head) {
+  Node* reversedHead = NULL;
+  Node* current = head;
+
+  while (current != NULL) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = current->data;
+    newNode->next = reversedHead;
+    reversedHead = newNode;
+
+    current = current->next;
+  }
+
+  return reversedHead;
+}
