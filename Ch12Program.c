@@ -19,7 +19,7 @@ void printList(Node* head);
 
 
 int main(void) {
-    
+
   // create linked list
   Node* head = NULL;
 
@@ -32,12 +32,16 @@ int main(void) {
   // create a reversed copy of the list
   Node* reversedHead = reverse(head);
 
+  puts(""); // spacing
+
   // print the original and reversed lists
   printf("%s", "Original List: ");
   printList(head);
 
   printf("%s", "Reversed List: ");
   printList(reversedHead);
+
+  puts(""); // spacing
   
     return 0;
 }
@@ -45,10 +49,12 @@ int main(void) {
 
 // insertion function for adding new nodes to linked list
 void insert(Node** head, char data) {
+  // allocate memory for node
   Node* newNode = (Node*)malloc(sizeof(Node));
   newNode->data = data;
   newNode->next = NULL;
 
+  // if head is empty
   if (*head == NULL) {
     *head = newNode;
   }
@@ -67,6 +73,7 @@ Node* reverse(Node* head) {
   Node* current = head;
 
   while (current != NULL) {
+    // allocate memory for node
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = current->data;
     newNode->next = reversedHead;
