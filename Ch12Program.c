@@ -52,3 +52,13 @@ Node* reverse(Node* head) {
 
   return reversedHead;
 }
+
+// print function for printing linked list
+void printList(Node* head) {
+  Node* current = head;
+  while (current != NULL) {
+    printf("%c ", current->data);
+    current = current->next;
+  }
+  printf("\n");
+}
