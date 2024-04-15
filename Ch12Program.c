@@ -12,8 +12,33 @@ typedef struct Node {
   struct Node* next;
 } Node;
 
-int main(void) {
+// function prototypes
+void insert(Node** head, char data);
+Node* reverse(Node* head);
+void printList(Node* head);
 
+
+int main(void) {
+    
+  // create linked list
+  Node* head = NULL;
+
+  // create a list of 10 characters
+  char data[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+  for (int i = 0; i < 10; ++i) {
+    insert(&head, data[i]);
+  }
+
+  // create a reversed copy of the list
+  Node* reversedHead = reverse(head);
+
+  // print the original and reversed lists
+  printf("%s", "Original List: ");
+  printList(head);
+
+  printf("%s", "Reversed List: ");
+  printList(reversedHead);
+  
     return 0;
 }
 
