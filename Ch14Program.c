@@ -10,6 +10,8 @@ int main() {
   // declare and initialize index/counter variable
   int i = 0;
 
+  puts(""); // spacing
+
   // print line one - repeat first print statement until i is equal to 5, then print newline
   line1: // label
       printf("%s", "*");
@@ -82,6 +84,8 @@ int main() {
       }
       printf("%s", "\n");
       i = 0;
+    
+    puts(""); // spacing
 
   return 0;
 } // end function main
