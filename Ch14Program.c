@@ -81,6 +81,7 @@ int main() {
           goto line5;
       }
       printf("%s", "\n");
+      i = 0;
 
   return 0;
 } // end function main
